@@ -107,7 +107,7 @@ def _get_cmd(img, img_ref, conf_args):
 
 
 def _read_cat(path='.pysex.cat'):
-    cat = asciidata.open(path)
+    cat = ascii.read(path)
     return cat
 
 
