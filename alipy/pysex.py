@@ -8,7 +8,7 @@ sextractor catalog.
 
 Dependencies:
  - sextractor (mandatory)
- - astroasciidata (mandatory)
+ - astropy (mandatory)
  - numpy (optional, needed for the array support)
  - pyfits (optional, needed for the array support)
 
@@ -23,7 +23,7 @@ Usage:
 
 import os
 import shutil
-import asciidata
+from astropy.io import ascii
 
 
 def _check_files(conf_file, conf_args, verbose=True):
