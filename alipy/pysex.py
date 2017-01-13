@@ -205,4 +205,4 @@ def run(image='', imageref='', params=[], conf_file=None,
     # Returning the cat :
     cat = _read_cat()
     _cleanup()
-    return cat, catfilename
+    return cat, catpath
