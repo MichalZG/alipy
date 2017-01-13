@@ -150,7 +150,7 @@ def run(image='', imageref='', params=[], conf_file=None,
     (imgdir, filename) = os.path.split(image)
     (common, ext) = os.path.splitext(filename)
     catfilename = common + \
-        ".pysexcat"  # Does not get deleted by _cleanup(),
+        ".pysexcat1"  # Does not get deleted by _cleanup(),
                      # even if in working dir !
     if keepcat:
         if catdir:
