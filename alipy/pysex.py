@@ -26,9 +26,9 @@ import shutil
 from astropy.io import ascii
 
 
-def _check_files(conf_file, conf_args, verbose=True):
+def _check_files(sex_command, conf_file, conf_args, verbose=True):
     if conf_file is None:
-        os.system("sex -d > .pysex.sex")
+        os.system(sex_command + " -d > .pysex.sex")
         conf_file = '.pysex.sex'
     if "FILTER_NAME" not in conf_args or \
        not os.path.isfile(conf_args['FILTER_NAME']):
@@ -98,9 +98,9 @@ def _setup_img(image, name):
         pyfits.writeto(name, image)
 
 
-def _get_cmd(img, img_ref, conf_args):
+def _get_cmd(img, img_ref, sex_command, conf_args):
     ref = img_ref if img_ref is not None else ''
-    cmd = ' '.join(['sex', ref, img, '-c .pysex.sex '])
+    cmd = ' '.join([sex_command, ref, img, '-c .pysex.sex '])
     args = [''.join(['-', key, ' ', str(conf_args[key])]) for key in conf_args]
     cmd += ' '.join(args)
     return cmd
@@ -121,7 +121,8 @@ def _cleanup():
 
 
 def run(image='', imageref='', params=[], conf_file=None,
-        conf_args={}, keepcat=True, rerun=False, catdir=None):
+        conf_args={}, keepcat=True, rerun=False, catdir=None,
+        sex_command='sex'):
     """
     Run sextractor on the given image with the given parameters.
 
@@ -178,9 +179,9 @@ def run(image='', imageref='', params=[], conf_file=None,
         verbose = True
     _cleanup()
     if not type(image) == type(''):
-        import pyfits
+        import astropy.io.fits as fits
         im_name = '.pysex.fits'
-        pyfits.writeto(im_name, image.transpose())
+        fits.writeto(im_name, image.transpose())
     else:
         im_name = image
     if not type(imageref) == type(''):
@@ -189,9 +190,9 @@ def run(image='', imageref='', params=[], conf_file=None,
         pyfits.writeto(imref_name, imageref.transpose())
     else:
         imref_name = imageref
-    conf_file, conf_args = _check_files(conf_file, conf_args, verbose)
+    conf_file, conf_args = _check_files(sex_command, conf_file, conf_args, verbose)
     _setup(conf_file, params)
-    cmd = _get_cmd(im_name, imref_name, conf_args)
+    cmd = _get_cmd(im_name, imref_name, sex_command, conf_args)
     res = os.system(cmd)
     if res:
         print("Error during sextractor execution!")
