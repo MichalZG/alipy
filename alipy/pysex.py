@@ -99,8 +99,8 @@ def _setup_img(image, name):
 
 
 def _get_cmd(img, img_ref, sex_command, conf_args):
-    ref = img_ref if img_ref is not None else ''
-    cmd = ' '.join([sex_command, ref, img, '-c .pysex.sex '])
+    ref = img_ref+',' if img_ref is not None else ''
+    cmd = ' '.join([sex_command, ref+img, '-c .pysex.sex '])
     args = [''.join(['-', key, ' ', str(conf_args[key])]) for key in conf_args]
     cmd += ' '.join(args)
     return cmd
@@ -150,7 +150,7 @@ def run(image='', imageref='', params=[], conf_file=None,
     (imgdir, filename) = os.path.split(image)
     (common, ext) = os.path.splitext(filename)
     catfilename = common + \
-        ".pysexcat1"  # Does not get deleted by _cleanup(),
+        ".pysexcat"  # Does not get deleted by _cleanup(),
                      # even if in working dir !
     if keepcat:
         if catdir:
