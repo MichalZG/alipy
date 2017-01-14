@@ -292,7 +292,7 @@ def readsexcat(sexcat, hdu=0, verbose=True,
     if verbose:
         print("Number of sources in catalog : %i" % (len(mycat)))
 
-    extnumbers = np.unique(mycat['EXT_NUMBER'].tonumpy())
+    extnumbers = np.unique(mycat['EXT_NUMBER'])
     if verbose:
         print("EXT_NUMBER values found in catalog : %s" %
               (", ".join(["%i" % val for val in extnumbers])))
