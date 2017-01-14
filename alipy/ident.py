@@ -228,7 +228,7 @@ class Identification:
 
 
 def run(ref, ukns, hdu=0, visu=True, skipsaturated=False,
-        r=5.0, n=500, sexkeepcat=False, sexrerun=True, verbose=True
+        r=5.0, n=500, sexkeepcat=False, sexrerun=True, verbose=True,
         sex_command='sextractor'):
     """
     Top-level function to identify transorms between images.
