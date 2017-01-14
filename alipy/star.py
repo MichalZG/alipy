@@ -226,7 +226,7 @@ def readsexcat(sexcat, hdu=0, verbose=True,
                maxflag=3, posflux=True, minfwhm=2.0, propfields=[]):
     """
     sexcat is either a string (path to a file),
-    or directly an asciidata catalog object as returned by pysex
+    or directly an data catalog object as returned by pysex
 
     :param hdu: The hdu containing the science data from which I should build
                 the catalog. 0 will select the only available extension.
@@ -274,9 +274,9 @@ def readsexcat(sexcat, hdu=0, verbose=True,
 
         if verbose:
             print("Reading %s " % (os.path.split(sexcat)[1]))
-        mycat = asciidata.open(sexcat)
+        mycat = ascii.read(sexcat)
 
-    else:  # then it's already a asciidata object
+    else:  # then it's already a ascii object
         mycat = sexcat
 
     # We check for the presence of required fields :
