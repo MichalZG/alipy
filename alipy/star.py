@@ -283,7 +283,7 @@ def readsexcat(sexcat, hdu=0, verbose=True,
     minimalfields = ["NUMBER", "X_IMAGE", "Y_IMAGE", "FWHM_IMAGE",
                      "ELONGATION", "FLUX_AUTO", "FLAGS", "EXT_NUMBER"]
     minimalfields.extend(propfields)
-    availablefields = [col.colname for col in mycat]
+    availablefields = mycat.colnames
     for field in minimalfields:
         if field not in availablefields:
             print("Field %s not available in your catalog file !" % (field))
