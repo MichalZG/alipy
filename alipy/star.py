@@ -266,7 +266,7 @@ def readsexcat(sexcat, hdu=0, verbose=True,
 
     if isinstance(sexcat, str):
 
-        import asciidata
+        from astropy.io import ascii
         if not os.path.isfile(sexcat):
             print("Sextractor catalog does not exist :")
             print(sexcat)
