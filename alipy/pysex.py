@@ -122,7 +122,7 @@ def _cleanup():
 
 def run(image='', imageref='', params=[], conf_file=None,
         conf_args={}, keepcat=True, rerun=False, catdir=None,
-        sex_command='sex'):
+        sex_command='sextractor'):
     """
     Run sextractor on the given image with the given parameters.
 
