@@ -8,7 +8,8 @@ import csv
 
 
 def affineremap(filepath, transform, shape, alifilepath=None,
-                outdir="alipy_out", makepng=False, hdu=0, verbose=True):
+                outdir="alipy_out", makepng=False, hdu=0, verbose=True,
+                overwrite=False):
     """
     Apply the simple affine transform to the image and saves the result as
     FITS, without using pyraf.
@@ -41,13 +42,16 @@ def affineremap(filepath, transform, shape, alifilepath=None,
         data, matrix, offset=offset, output_shape=shape)
 
     basename = os.path.splitext(os.path.basename(filepath))[0]
-
-    if alifilepath == None:
-        alifilepath = os.path.join(outdir, basename + "_affineremap.fits")
+    
+    if overwrite:
+        alifilepath = filepath
     else:
-        outdir = os.path.split(alifilepath)[0]
-    if not os.path.isdir(outdir):
-        os.makedirs(outdir)
+        if alifilepath == None:
+            alifilepath = os.path.join(outdir, basename + "_affineremap.fits")
+        else:
+            outdir = os.path.split(alifilepath)[0]
+        if not os.path.isdir(outdir):
+            os.makedirs(outdir)
 
     tofits(alifilepath, data, hdr=None, verbose=verbose)
 
