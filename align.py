@@ -132,6 +132,7 @@ def tofits(outfilename, pixelarray, hdr=None, verbose=True):
         os.remove(outfilename)
 
     if hdr == None:  # then a minimal header will be created
+        print('BRAK HDR')
         hdu = fits.PrimaryHDU(pixelarray.transpose())
     else:  # this if else is probably not needed but anyway ...
         hdu = fits.PrimaryHDU(pixelarray.transpose(), hdr)
