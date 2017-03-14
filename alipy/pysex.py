@@ -100,7 +100,7 @@ def _setup_img(image, name):
 
 def _get_cmd(img, img_ref, conf_args):
     ref = img_ref if img_ref is not None else ''
-    cmd = ' '.join(['sextractor', ref, img, '-c .pysex.sex '])
+    cmd = ' '.join(['sextractor', ref+','+img, '-c .pysex.sex '])
     args = [''.join(['-', key, ' ', str(conf_args[key])]) for key in conf_args]
     cmd += ' '.join(args)
     return cmd
